@@ -1,0 +1,25 @@
+{
+    "generator": {
+        "apiVersion": "v1",
+        "generator": ">=1.10.0 <2.0.0",
+        "renderer": "react",
+        "parameters": {
+            "server": {
+              "description": "The server you want to use in the code.",
+              "required": true
+            }
+        }
+    },
+    "dependencies": {
+        "@asyncapi/generator-react-sdk": "^0.2.25"
+    },
+    "scripts": {
+        "test:clean": "rimraf test/project/client.js",
+        "test:generate": "asyncapi generate fromTemplate test/fixtures/asyncapi.yml ./ --output test/project --force-write --param server=dev",
+        "test:start": "python3 test/project/test.py",
+        "test": "npm run test:clean && npm run test:generate && npm run test:start"
+    },
+    "devDependencies": {
+        "rimraf": "^5.0.0"
+    }
+}

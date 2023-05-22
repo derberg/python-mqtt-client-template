@@ -1,0 +1,6 @@
+
+__pycache__
+__transpiled
+node_modules
+
+test/project/client.py
