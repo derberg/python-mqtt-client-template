@@ -5,6 +5,7 @@
         "apiVersion": "v1",
         "generator": ">=1.10.0 <2.0.0",
         "renderer": "react",
+        "supportedProtocols": ["mqtt"],
         "parameters": {
             "server": {
               "description": "The server you want to use in the code.",
