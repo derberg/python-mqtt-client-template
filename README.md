@@ -3,12 +3,8 @@
 - [Specification requirements](#specification-requirements)
 - [Supported protocols](#supported-protocols)
 - [How to use the template](#how-to-use-the-template)
-  * [CLI](#cli)
-  * [Docker](#docker)
 - [Template configuration](#template-configuration)
-- [Custom hooks that you can disable](#custom-hooks-that-you-can-disable)
 - [Development](#development)
-- [Contributors](#contributors)
 
 ## Overview
 
