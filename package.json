@@ -1,4 +1,6 @@
 {
+    "name": "python-mqtt-client-template",
+    "version": "0.0.1",
     "generator": {
         "apiVersion": "v1",
         "generator": ">=1.10.0 <2.0.0",

@@ -30,10 +30,13 @@ MQTT
 
 ## How to use the template
 
-Install [AsyncAPI CLI](https://github.com/asyncapi/cli) and generate code:
+- Install [AsyncAPI CLI](https://github.com/asyncapi/cli)
+- Make sure you have Python 3
+
+Generate code:
 
 ```bash
-asyncapi generate fromTemplate myAsyncapi.yml https://github.com/derberg/python-mqtt-client-template --output test/project --force-write --param server=dev
+asyncapi generate fromTemplate https://raw.githubusercontent.com/derberg/python-mqtt-client-template/main/test/fixtures/asyncapi.yml https://github.com/derberg/python-mqtt-client-template --output myclient --force-write --param server=dev
 ```
 
 You can also clone this template locally and run `npm test` to check it in action based on examples. Just remember to use some client to verify if tests are really sending messages to the broker:
