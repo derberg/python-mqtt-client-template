@@ -19,7 +19,7 @@
     "scripts": {
         "test:clean": "rimraf test/project/client.js",
         "test:generate": "asyncapi generate fromTemplate test/fixtures/asyncapi.yml ./ --output test/project --force-write --param server=dev",
-        "test:start": "python3 test/project/test.py",
+        "test:start": "python test/project/test.py",
         "test": "npm run test:clean && npm run test:generate && npm run test:start"
     },
     "devDependencies": {
