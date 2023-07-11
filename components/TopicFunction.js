@@ -41,7 +41,7 @@ function getTopics(channels) {
       const topic = {};
       const operation = ch.operations().filterByReceive()[0];
   
-      if (operation && operation.id()) {
+      if (operation.hasOperationId()) {
           topic.name = operation.id();
       } else {
           topic.name = null;
