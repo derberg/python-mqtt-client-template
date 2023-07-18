@@ -1,40 +1,75 @@
 /*
  * This component returns a blok of functions that user can use to send messages to specific topic.
  * As input it requires a list of Channel models from the parsed AsyncAPI document
- */ 
+
+*/
 export function TopicFunction({ channels }) {
+  const topicsDetails = getTopics(channels);
+  let functions = '';
 
-    const topicsDetails = getTopics(channels);
-    let functions = '';
+  topicsDetails.forEach(t => {
+    const functionName = t.functionName;
 
-    topicsDetails.forEach(t => {
-      functions += `def send${ t.name }(self, id):
-        topic = "${t.topic}"
-        self.client.publish(topic, id)\n`
-    });
+    functions += `def send${capitalizeWords(functionName)}(self, id):
+      topic = "${t.topic}"
+      self.client.publish(topic, id)\n`;
+  });
 
-    return functions;
+  return functions;
 }
 
 /*
- * This function returns a list of objects, one for each channel with two properties, name and topic
- * name - holds information about the operationId provided in the AsyncAPI document
- * topic - holds information about the address of the topic
- * 
- * As input it requires a list of Channel models from the parsed AsyncAPI document
- */ 
+* This function returns a list of objects, one for each channel with two properties, name and topic
+* name - holds information about the operationId provided in the AsyncAPI document
+* topic - holds information about the address of the topic
+* 
+* As input it requires a list of Channel models from the parsed AsyncAPI document
+*/ 
+
 function getTopics(channels) {
-    const channelsCanSendTo = channels;
-    let topicsDetails = [];
+  const channelsCanSendTo = channels;
+  let topicsDetails = [];
 
-    channelsCanSendTo.forEach(ch => {
-      const topic = {};
-      const operationId = ch.operations().filterByReceive()[0].id();
-      topic.name = operationId.charAt(0).toUpperCase() + operationId.slice(1);
-      topic.topic = ch.address();
+  channelsCanSendTo.forEach(ch => {
+    const topic = {};
+    const operation = ch.operations().filterByReceive()[0];
 
-      topicsDetails.push(topic);
-    });
+    if (operation.hasOperationId()) {
+      topic.functionName = capitalizeWords(operation.id());
+    } else {
+      topic.functionName = ch.address().split('/').pop().replace(/[^a-zA-Z0-9]/g, '');
+    }
 
-    return topicsDetails;
+    topic.topic = ch.address();
+
+    topicsDetails.push(topic);
+  });
+
+  return topicsDetails;
 }
+
+/*
+* getTopics checks if there is an operation and an id.
+* If there isn't any operatonId it fallsback to using channel name to generate a topic name
+*/ 
+
+function capitalizeWords(str) {
+  return str.split('/').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('');
+}
+
+/* the function takes a string and capitalizes the words after the first '/'
+
+comments:
+1. maybe better name would be getFunctionDetails
+2. line 37(      let whatever = ''
+      
+      if (operation.hasOperationId()) {
+        whatever = capitalizeWords(operation.id());
+      } else {
+        whatever = capitalizeWords(ch.address());
+      }
+
+      topic.functionName = "send" + whatever)
+3. line 11 to 13 (    functions += `def ${t.functionName}(self, id):)
+4. and remember to update function's jsdoc descriptions
+*/
