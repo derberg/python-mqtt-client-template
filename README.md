@@ -8,9 +8,9 @@
 
 ## Overview
 
-This template generates MQTT Python client module. Its purpose is to abstract for the application client technical information about the broker and the names of topics it should use. Instead, it generates a module that provides a set of indent-driven functions that one can invoke to send a message to the application through the message broker.
+This template generates the MQTT Python client module. Its purpose is to abstract for the application client technical information about the broker and the names of topics it should use. Instead, it generates a module that provides a set of indent-driven functions that one can invoke to send a message to the application through the message broker.
 
-Currently it is capable only to generate a functions for sending messages, there is not code generation for functions that are designed to subscribe and listen for messages.
+Currently, it is capable only to generate functions for sending messages, there is no code generation for functions that are designed to subscribe and listen for messages.
 
 ## Technical requirements
 
@@ -31,7 +31,7 @@ MQTT
 ## How to use the template
 
 - Install [AsyncAPI CLI](https://github.com/asyncapi/cli)
-- Make sure you have Python 3
+- Make sure you have Python
 
 Generate code:
 
