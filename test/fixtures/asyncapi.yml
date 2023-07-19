@@ -22,7 +22,6 @@ channels:
   comment/unliked:
     description: Updates the likes count in the database when comment is unliked.
     publish: 
-      operationId: commentUnliked
       message:
         description: Message that is being sent when a comment has been unliked by someone.
         payload:
