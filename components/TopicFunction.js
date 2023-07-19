@@ -29,7 +29,7 @@ function capitalizeWords(str) {
 
 /*
 * This function returns a list of objects, one for each channel with two properties, functionName and topic
-* functionName - holds information about the operationId provided in the AsyncAPI document
+* functionName - holds the name of the function built from operationId or channel address if operationId is missing
 * topic - holds information about the address of the topic
 * 
 * As input it requires a list of channels properties from the parsed AsyncAPI document
