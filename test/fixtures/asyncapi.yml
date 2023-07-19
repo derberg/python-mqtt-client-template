@@ -14,7 +14,6 @@ channels:
   comment/liked:
     description: Updates the likes count in the database when new like is noticed.
     publish: 
-      operationId: commentLiked
       message:
         description: Message that is being sent when a comment has been liked by someone.
         payload:
