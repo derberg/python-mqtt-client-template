@@ -9,9 +9,8 @@ export function TopicFunction({ channels }) {
   let functions = '';
 
   topicsDetails.forEach(t => {
-    const functionName = t.functionName;
 
-    functions += `def ${functionName}(self, id):
+    functions += `def ${t.functionName}(self, id):
       topic = "${t.topic}"
       self.client.publish(topic, id)\n`;
   });
