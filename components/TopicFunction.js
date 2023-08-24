@@ -10,9 +10,19 @@ export function TopicFunction({ channels }) {
 
   topicsDetails.forEach(t => {
 
-    functions += `def ${t.functionName}(self, id):
-      topic = "${t.topic}"
-      self.client.publish(topic, id)\n`;
+    // Check if the topic is 'comment/views'
+    if (t.topic === 'comment/views') {
+      // Generate a subscribe function for 'comment/views' topic
+      functions += `def ${t.subscribefunctionName}(self, callback):
+        topic = "${t.topic}"
+        self.client.subscribe(topic)
+        self.client.message_callback_add(topic, callback)\n`;
+    } else {
+      // Generate a publish function for other topics
+      functions += `def ${t.sendfunctionName}(self, id):
+        topic = "${t.topic}"
+        self.client.publish(topic, id)\n`;
+    }
   });
 
   return functions;
@@ -50,7 +60,8 @@ function getFunctionDetails(channels) {
       capitalizedName = capitalizeWords(ch.address());
     }
 
-    topic.functionName = "send" + capitalizedName;
+    topic.sendfunctionName = "send" + capitalizedName;
+    topic.subscribefunctionName = "subscribe" + capitalizedName;
     topic.topic = ch.address();
 
     topicsDetails.push(topic);

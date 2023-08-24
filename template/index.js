@@ -21,6 +21,8 @@ export default function({ asyncapi, params }) {
       <Text indent={2} newLines={2}>
         {`def __init__(self):
             self.client = mqtt.Client()
+            self.view_count = 0
+            self.subscribe("comment/views")
             self.client.connect(mqttBroker)`}
       </Text>
 
@@ -28,6 +30,20 @@ export default function({ asyncapi, params }) {
         <TopicFunction
           channels={asyncapi.channels().filterByReceive()}
         />
+      </Text>
+
+      <Text indent={2} newLines={2}>
+        {`def on_message(self, client, userdata, message):
+            topic = message.topic
+            payload = message.payload.decode("utf-8")
+            if topic == "comment/views":
+              self.view_count += 1`}
+      </Text>
+
+      <Text indent={2} newLines={2}>
+        {`def subscribe(self, topic):
+            self.client.subscribe(topic)
+            self.client.on_message = self.on_message`}
       </Text>
 
     </File>

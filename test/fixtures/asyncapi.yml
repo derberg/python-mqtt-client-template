@@ -1,5 +1,4 @@
 asyncapi: 2.6.0
-
 info:
   title: Comments Service
   version: 1.0.0
@@ -28,6 +27,15 @@ channels:
         payload:
           $ref: '#/components/schemas/commentId'
 
+  comment/views:
+    description: Gets the total number of comment views.
+    subscribe: 
+      operationId: commentViews
+      message:
+        description: Message that is being sent with the total number of views in a comment.
+        payload:
+          $ref: '#/components/schemas/commentId'
+
 components:
   schemas:
     commentId:
@@ -35,4 +43,4 @@ components:
       additionalProperties: false
       properties:
         commentId: 
-          type: string
+          type: [string, integer]
