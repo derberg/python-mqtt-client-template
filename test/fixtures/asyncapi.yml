@@ -16,7 +16,7 @@ channels:
       message:
         description: Message that is being sent when a comment has been liked by someone.
         payload:
-          $ref: '#/components/schemas/commentId'
+          $ref: '#/components/schemas/commentReaction'
 
   comment/unliked:
     description: Updates the likes count in the database when comment is unliked.
@@ -25,7 +25,7 @@ channels:
       message:
         description: Message that is being sent when a comment has been unliked by someone.
         payload:
-          $ref: '#/components/schemas/commentId'
+          $ref: '#/components/schemas/commentReaction'
 
   comment/views:
     description: Gets the total number of comment views.
@@ -34,13 +34,28 @@ channels:
       message:
         description: Message that is being sent with the total number of views in a comment.
         payload:
-          $ref: '#/components/schemas/commentId'
+          $ref: '#/components/schemas/commentCount'
 
 components:
   schemas:
-    commentId:
+    commentCount:
+      type: object
+    additionalProperties: false
+    properties:
+        commentId:
+          $ref: '#/components/schemas/commentId'
+        count:
+          $ref: '#/components/schemas/count'
+
+    commentReaction:
       type: object
       additionalProperties: false
       properties:
-        commentId: 
-          type: [string, integer]
+        commentId:
+          $ref: '#/components/schemas/commentId'
+        
+    count:        
+      type: integer
+
+    commentId:
+      type: string
