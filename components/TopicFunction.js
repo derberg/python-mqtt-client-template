@@ -9,20 +9,16 @@ export function TopicFunction({ channels }) {
   let functions = '';
 
   topicsDetails.forEach(t => {
-
-    // Check if the topic is 'comment/views'
-    if (t.topic === 'comment/views') {
-      // Generate a subscribe function for 'comment/views' topic
-      functions += `def ${t.subscribefunctionName}(self, callback):
+    // Generate a subscribe function
+    functions += `def ${t.subscribefunctionName}(self, callback):
         topic = "${t.topic}"
         self.client.subscribe(topic)
         self.client.message_callback_add(topic, callback)\n`;
-    } else {
-      // Generate a publish function for other topics
-      functions += `def ${t.sendfunctionName}(self, id):
+
+    // Generate a publish function for the same topic
+    functions += `def ${t.sendfunctionName}(self, id):
         topic = "${t.topic}"
         self.client.publish(topic, id)\n`;
-    }
   });
 
   return functions;
