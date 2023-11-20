@@ -23,18 +23,21 @@ export default function({ asyncapi, params }) {
             self.client = mqtt.Client()
             self.client.connect(mqttBroker)`}
       </Text>
-      
-      <Text indent={2} newLines={2}>
-        {`def subscribeCommentViews(self, callback):
-            topic = "comment/views"
-            self.client.subscribe(topic)
-            self.client.message_callback_add(topic, callback)`}
+
+      <Text indent={2}>
+        <TopicFunction
+          channels={asyncapi.channels()}
+          operationType="send"
+        />
+
       </Text>
 
       <Text indent={2}>
         <TopicFunction
-          channels={asyncapi.channels().filterByReceive()}
-        />
+            channels={asyncapi.channels()}
+            operationType="receive"
+          />
+
       </Text>
 
     </File>

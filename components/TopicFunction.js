@@ -5,18 +5,21 @@
 */
 
 export function TopicFunction({ channels }) {
-  const topicsDetails = getFunctionDetails(channels);
+  const sendDetails = getFunctionDetails(channels, "send");
+  const receiveDetails = getFunctionDetails(channels, "receive");
   let functions = '';
 
-  topicsDetails.forEach(t => {
-    // Generate a subscribe function
-    functions += `def ${t.subscribefunctionName}(self, callback):
+  sendDetails.forEach(t => {
+    // Generate a subscribe/send function
+    functions += `def ${t.functionName}(self, callback):
         topic = "${t.topic}"
         self.client.subscribe(topic)
         self.client.message_callback_add(topic, callback)\n`;
+    });
 
-    // Generate a publish function for the same topic
-    functions += `def ${t.sendfunctionName}(self, id):
+  receiveDetails.forEach(t => { 
+    // Generate a publish/receive function for the same topic
+    functions += `def ${t.functionName}(self, id):
         topic = "${t.topic}"
         self.client.publish(topic, id)\n`;
   });
@@ -40,29 +43,29 @@ function capitalizeWords(str) {
 * As input it requires a list of channels properties from the parsed AsyncAPI document
 */ 
 
-function getFunctionDetails(channels) {
-  const channelsCanSendTo = channels;
-  let topicsDetails = [];
+function getFunctionDetails(channels, operationType) {
+  const channelsList = channels;
+  let details = [];
 
-  channelsCanSendTo.forEach(ch => {
+  channelsList.forEach(ch => {
     const topic = {};
-    const operation = ch.operations().filterByReceive()[0];
+    const operation = operationType === "send" ? ch.operations().filterBySend()[0] : ch.operations().filterByReceive()[0];
+    //const operation = ch.operations[0];
 
     let capitalizedName = '';
 
-    if (operation.hasOperationId()) {
+    if (operation && operation.hasOperationId()) {
       capitalizedName = capitalizeWords(operation.id());
     } else {
       capitalizedName = capitalizeWords(ch.address());
     }
 
-    topic.sendfunctionName = "send" + capitalizedName;
-    topic.subscribefunctionName = "subscribe" + capitalizedName;
+    topic.functionName = operationType + capitalizedName;
     topic.topic = ch.address();
 
-    topicsDetails.push(topic);
+    details.push(topic);
   });
 
-  return topicsDetails;
+  return details;
 }
 
