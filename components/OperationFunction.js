@@ -60,3 +60,22 @@ function getFunctionDetails(operations) {
 
 
 // asyncapi generate fromTemplate test/fixtures/asyncapi.yml ./ --output test2/project --force-write --param server=dev
+
+/* Code Explanation:
+
+The Comments Service defined in the AsyncAPI file processes events using the MQTT protocol
+to handle different operations such as Send/Publish for comments like and unlike and Receive/Subscribe views.
+
+OperactionFunction code includes two major functions one to GenerateSendFunctions and the other to GenerateReceiveFunctions.
+These functions generate send and receive according to the definition of the AsyncAPI file. These functions will then create the client 
+implementation `client.py`
+
+The client code sets up an MQTT connection with OperationsFunction to generate send and receiving messages. 
+The genereated client code will now interact with Comments Service using MQTT.
+
+In the test.py file, the script imports the CommentsService code and creates an activity by randomly sending comments liked and unlikes at
+every second interval. It showcases how the client interacts with the Comments Service API.
+
+In a nutshell, the code generator provides a structure of how MQTT interacts with Comments Service in a Python enviroment.
+
+*/
