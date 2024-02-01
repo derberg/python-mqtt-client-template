@@ -1,5 +1,5 @@
 import { File, Text } from '@asyncapi/generator-react-sdk';
-import { TopicFunction } from '../components/TopicFunction';
+import { GenerateSendFunctions, GenerateReceiveFunctions } from '../components/OperationFunction';
 
 export default function({ asyncapi, params }) {
 
@@ -11,11 +11,11 @@ export default function({ asyncapi, params }) {
       </Text>
          
       <Text newLines={2}>
-        mqttBroker = "{ asyncapi.servers().get(params.server).url() }"
+        mqttBroker = "{ asyncapi.servers().get(params.server).host() }"
       </Text>
 
       <Text newLines={2}>
-        class { asyncapi.info().title().replaceAll(" ", "") }Client:
+        class { asyncapi.info().title().replace(" ", "") }Client:
       </Text>
 
       <Text indent={2} newLines={2}>
@@ -25,19 +25,8 @@ export default function({ asyncapi, params }) {
       </Text>
 
       <Text indent={2}>
-        <TopicFunction
-          channels={asyncapi.channels()}
-          operationType="send"
-        />
-
-      </Text>
-
-      <Text indent={2}>
-        <TopicFunction
-            channels={asyncapi.channels()}
-            operationType="receive"
-          />
-
+        <GenerateSendFunctions operations = {asyncapi.operations()} />
+        <GenerateReceiveFunctions operations =  {asyncapi.operations()} />
       </Text>
 
     </File>
