@@ -2,6 +2,7 @@ from client import CommentsServiceClient
 from random import randrange
 import time
 
+
 client = CommentsServiceClient()
 
 id_length = 8
