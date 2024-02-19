@@ -8,9 +8,7 @@
 
 ## Overview
 
-This template generates MQTT Python client module. Its purpose is to abstract for the application client technical information about the broker and the names of topics it should use. Instead, it generates a module that provides a set of indent-driven functions that one can invoke to send a message to the application through the message broker.
-
-Currently it is capable only to generate a functions for sending messages, there is not code generation for functions that are designed to subscribe and listen for messages.
+This template generates MQTT Python client module. Its purpose is to abstract for the application client technical information about the broker and the names of topics it should use. Instead, it generates a module that provides a set of indent-driven functions that one can invoke to send or receive messages to the application through the message broker.
 
 ## Technical requirements
 
@@ -39,10 +37,16 @@ Generate code:
 asyncapi generate fromTemplate https://raw.githubusercontent.com/derberg/python-mqtt-client-template/main/test/fixtures/asyncapi.yml https://github.com/derberg/python-mqtt-client-template --output myclient --force-write --param server=dev
 ```
 
-You can also clone this template locally and run `npm test` to check it in action based on examples. Just remember to use some client to verify if tests are really sending messages to the broker:
+You can also clone this template locally and run `npm test` to check it in action based on examples. Just remember to use some client to verify if tests are really sending or receiving messages to the broker.
+
+For sending:
 
 ```bash
 docker run hivemq/mqtt-cli sub -t comment/liked -h test.mosquitto.org
+```
+For receiving:
+```bash
+docker run hivemq/mqtt-cli pub -t comment/views -h test.mosquitto.org -m receiving-messages
 ```
 
 ## Template configuration
