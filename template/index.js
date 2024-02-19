@@ -29,6 +29,11 @@ export default function({ asyncapi, params }) {
         <GenerateReceiveFunctions operations =  {asyncapi.operations()} />
       </Text>
 
+            <Text indent={2} newLines={2}>
+        {`def loop(self):
+            self.client.loop_forever()`}
+      </Text>
+
     </File>
   );
 }

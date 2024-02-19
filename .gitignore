@@ -4,3 +4,4 @@ __transpiled
 node_modules
 
 test/project/client.py
+test/project/requirements.txt
