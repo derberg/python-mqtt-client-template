@@ -2,7 +2,7 @@
     "name": "python-mqtt-client-template",
     "version": "0.0.1",
     "generator": {
-        "apiVersion": "v2",
+        "apiVersion": "v3",
         "generator": ">=1.10.0 <2.0.0",
         "renderer": "react",
         "supportedProtocols": [
@@ -16,7 +16,6 @@
         }
     },
     "dependencies": {
-        "@asyncapi/converter": "^1.4.7",
         "@asyncapi/generator-react-sdk": "^0.2.25"
     },
     "scripts": {

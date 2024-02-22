@@ -2,7 +2,7 @@
 
 export function GenerateSendFunctions({ operations }) {
   const sendOperations = Array.from(operations).filter(op => op.isSend());
-  const sendDetails = getFunctionDetails(sendOperations, "send");
+  const sendDetails = getFunctionDetails(sendOperations);
   let functions = '';
 
   sendDetails.forEach(t => {
@@ -19,7 +19,7 @@ export function GenerateSendFunctions({ operations }) {
 
 export function GenerateReceiveFunctions({ operations }) {
   const receiveOperations = Array.from(operations).filter(op => op.isReceive());
-  const receiveDetails = getFunctionDetails(receiveOperations, "receive");
+  const receiveDetails = getFunctionDetails(receiveOperations);
   let functions = '';
 
   receiveDetails.forEach(t => {

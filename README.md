@@ -39,12 +39,13 @@ asyncapi generate fromTemplate https://raw.githubusercontent.com/derberg/python-
 
 You can also clone this template locally and run `npm test` to check it in action based on examples. Just remember to use some client to verify if tests are really sending or receiving messages to the broker.
 
-For sending:
+Subscribe to a broker to see if the test is sending messages properly:
 
 ```bash
 docker run hivemq/mqtt-cli sub -t comment/liked -h test.mosquitto.org
 ```
-For receiving:
+Publish to a broker to see if the test is consuming messages properly:
+
 ```bash
 docker run hivemq/mqtt-cli pub -t comment/views -h test.mosquitto.org -m receiving-messages
 ```
