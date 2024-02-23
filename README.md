@@ -57,7 +57,7 @@ Name | Description | Required | Default | Allowed Values | Example
 
 The most straightforward command to generate code on local during development is:
 ```bash
-asyncapi generate fromTemplate test/fixtures/asyncapi.yml ./ --output test/project --force-write --param server=dev
+npx asyncapi generate fromTemplate test/fixtures/asyncapi.yml ./ --output test/project --force-write --param server=dev
 ```
 
 For local development, you need different variations of this command. First of all, you need to know about three important CLI flags:
