@@ -8,7 +8,7 @@ servers:
     host: test.mosquitto.org
     protocol: mqtt
 channels:
-  commentLiked:
+  sendCommentLiked:
     address: comment/liked
     messages:
       commentLiked:
@@ -16,7 +16,7 @@ channels:
         payload:
           $ref: '#/components/schemas/commentReaction'
     description: Updates the likes count in the database when new like is noticed.
-  commentUnliked:
+  sendCommentUnliked:
     address: comment/unliked
     messages:
       commentUnliked:
@@ -24,7 +24,7 @@ channels:
         payload:
           $ref: '#/components/schemas/commentReaction'
     description: Updates the likes count in the database when comment is unliked.
-  commentViews:
+  receiveCommentViews:
     address: comment/views
     messages:
       commentViews:
@@ -35,18 +35,18 @@ channels:
           $ref: '#/components/schemas/commentCount'
     description: Gets the total number of comment views.
 operations:
-  commentLiked:
+  sendCommentLiked:
     action: send
     channel:
-      $ref: '#/channels/commentLiked'
-  commentUnliked:
+      $ref: '#/channels/sendCommentLiked'
+  sendCommentUnliked:
     action: send
     channel:
-      $ref: '#/channels/commentUnliked'
-  commentViews:
+      $ref: '#/channels/sendCommentUnliked'
+  receiveCommentViews:
     action: receive
     channel:
-      $ref: '#/channels/commentViews'
+      $ref: '#/channels/receiveCommentViews'
 components:
   schemas:
     commentCount:
