@@ -2,14 +2,16 @@
     "name": "python-mqtt-client-template",
     "version": "0.0.1",
     "generator": {
-        "apiVersion": "v1",
+        "apiVersion": "v3",
         "generator": ">=1.10.0 <2.0.0",
         "renderer": "react",
-        "supportedProtocols": ["mqtt"],
+        "supportedProtocols": [
+            "mqtt"
+        ],
         "parameters": {
             "server": {
-              "description": "The server you want to use in the code.",
-              "required": true
+                "description": "The server you want to use in the code.",
+                "required": true
             }
         }
     },
