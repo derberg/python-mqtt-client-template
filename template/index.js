@@ -30,8 +30,9 @@ export default function({ asyncapi, params }) {
       </Text>
 
             <Text indent={2} newLines={2}>
-        {`def loop(self):
-            self.client.loop_forever()`}
+        {`def loop(self): 
+        '''Continuously process incoming messages withou blocking the code execution'''
+        self.client.loop_forever()`}
       </Text>
 
     </File>

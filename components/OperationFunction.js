@@ -34,7 +34,7 @@ export function GenerateReceiveFunctions({ operations }) {
     // Generate receive function
     functions += `def ${t.functionName}(self, callback):
     """
-    Subcribes to a topic and adds a message callback to handle received essages.
+    Subcribes to a topic and adds a message callback to handle received messages.
 
     Args:
 

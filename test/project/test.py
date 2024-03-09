@@ -9,6 +9,7 @@ min_value = 10**(id_length-1)
 max_value = 10**id_length - 1
 
 def read_views(client, user_data, message): 
+    '''Subcribes to a topic and adds a message callback to handle received messages.'''
     print("Received message on topic: " + message.topic)
     print("Message: " + str(message.payload.decode()))
 
