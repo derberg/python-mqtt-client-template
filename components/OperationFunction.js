@@ -1,4 +1,4 @@
-//Generates and returns a string containing send functions based on provided operations in the yaml file.
+//Generates and returns a string containing send functions based on provided operations in the asyncapi file.
 
 export function GenerateSendFunctions({ operations }) {
   const sendOperations = Array.from(operations).filter(op => op.isSend());
@@ -6,16 +6,24 @@ export function GenerateSendFunctions({ operations }) {
   let functions = '';
 
   sendDetails.forEach(t => {
-    // Generate send function 
+    // Send a message to the MQTT broker on whether a comment is liked or unliked by someone.
     functions += `def ${t.functionName}(self, id):
-        topic = "${t.topic}"
-        self.client.publish(topic, id)\n`;
+    """
+    Send a message to the MQTT broker on whether a comment is 
+    liked or unliked by someone.
+
+    Args: 
+    self: CommentsServiceClient Instance
+    id: Comment ID
+    """
+    topic = "${t.topic}"
+    self.client.publish(topic, id)\n`;
   });
 
   return functions;
 }
 
-//Generates and returns a string containing receive functions based on provided operations in the yaml file.
+// Generates and returns a string containing receive functions based on provided operations in the asyncapi file.
 
 export function GenerateReceiveFunctions({ operations }) {
   const receiveOperations = Array.from(operations).filter(op => op.isReceive());
@@ -25,15 +33,24 @@ export function GenerateReceiveFunctions({ operations }) {
   receiveDetails.forEach(t => {
     // Generate receive function
     functions += `def ${t.functionName}(self, callback):
-        topic = "${t.topic}"
-        self.client.subscribe(topic)
-        self.client.message_callback_add(topic, callback)\n`;
+    """
+    Subcribes to a topic and adds a message callback to handle received essages.
+
+    Args:
+
+    self:  CommentsServiceClient Instance
+    callback: Callback function to handle received messages
+    """
+    topic = "${t.topic}"
+    self.client.subscribe(topic)
+    self.client.message_callback_add(topic, callback)\n`;
   });
   
   return functions;
 }
 
-//     Capitalizes the first letter of each word in a given string. Follows the camelCase rule.
+// Capitalizes the first letter of each word in a given string. Follows the camelCase rule.
+
 function capitalizeWords(str) {
   return str.split('/').map(word => word.charAt(0).toLowerCase() + word.slice(1)).join('');
 }

@@ -16,6 +16,9 @@ client.receiveCommentViews(read_views)
 
 # Define a function for sending comments liked and unliked
 def send_comments():
+    '''
+    Function to simulate sending comments liked and unliked.
+    '''
     while True:
         randomId = randrange(min_value, max_value + 1)
         client.sendCommentLiked(randomId) 

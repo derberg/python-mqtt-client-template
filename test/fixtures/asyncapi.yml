@@ -56,7 +56,7 @@ components:
       commentId:
         $ref: '#/components/schemas/commentId'
       count:
-        type: integer
+        $ref: '#/components/schemas/count'
     commentReaction:
       type: object
       additionalProperties: false
