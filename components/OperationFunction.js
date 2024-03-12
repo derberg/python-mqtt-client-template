@@ -9,14 +9,12 @@ export function GenerateSendFunctions({ operations }) {
     // Send a message to the MQTT broker on whether a comment is liked or unliked by someone.
     functions += `def ${t.functionName}(self, id):
     """
-    Send a message to the MQTT broker on whether a comment is 
-    liked or unliked by someone.
-
     Args: 
-    self: CommentsServiceClient Instance
+    self: CommentsServiceClient
     id: Comment ID
     """
-    topic = "${t.topic}"
+    topic = "${t.topic}"   
+    summary = "${t.summary}"
     self.client.publish(topic, id)\n`;
   });
 
@@ -34,14 +32,13 @@ export function GenerateReceiveFunctions({ operations }) {
     // Generate receive function
     functions += `def ${t.functionName}(self, callback):
     """
-    Subcribes to a topic and adds a message callback to handle received messages.
-
     Args:
 
-    self:  CommentsServiceClient Instance
+    self:  CommentsServiceClient
     callback: Callback function to handle received messages
     """
     topic = "${t.topic}"
+    summary = "${t.summary}"
     self.client.subscribe(topic)
     self.client.message_callback_add(topic, callback)\n`;
   });
@@ -67,6 +64,7 @@ function getFunctionDetails(operations) {
       topic.functionName = capitalizedName;
       const channel = operation.channels();
       topic.topic = channel[0].address();
+      topic.summary = operation.summary();
 
       details.push(topic);
   });

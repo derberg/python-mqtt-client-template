@@ -31,7 +31,7 @@ export default function({ asyncapi, params }) {
 
             <Text indent={2} newLines={2}>
         {`def loop(self): 
-        '''Continuously process incoming messages withou blocking the code execution'''
+        '''This is a blocking form of the network loop and will not return until the client calls disconnect(). It automatically handles reconnecting.'''
         self.client.loop_forever()`}
       </Text>
 
