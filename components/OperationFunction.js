@@ -1,6 +1,6 @@
 //Generates and returns a string containing send functions based on provided operations in the asyncapi file.
 
-export function GenerateSendFunctions({ operations }) {
+export function GenerateSendFunctions({ operations, className}) {
   const sendOperations = Array.from(operations).filter(op => op.isSend());
   const sendDetails = getFunctionDetails(sendOperations);
   let functions = '';
@@ -9,12 +9,16 @@ export function GenerateSendFunctions({ operations }) {
     // Send a message to the MQTT broker on whether a comment is liked or unliked by someone.
     functions += `def ${t.functionName}(self, id):
     """
-    Args: 
-    self: CommentsServiceClient
-    id: Comment ID
+    ${t.summary}
+
+    Args:
+
+      self: ${className}
+
+      id (str) : Comment ID
+    
     """
-    topic = "${t.topic}"   
-    summary = "${t.summary}"
+    topic = "${t.topic}"
     self.client.publish(topic, id)\n`;
   });
 
@@ -23,7 +27,7 @@ export function GenerateSendFunctions({ operations }) {
 
 // Generates and returns a string containing receive functions based on provided operations in the asyncapi file.
 
-export function GenerateReceiveFunctions({ operations }) {
+export function GenerateReceiveFunctions({ operations, className }) {
   const receiveOperations = Array.from(operations).filter(op => op.isReceive());
   const receiveDetails = getFunctionDetails(receiveOperations);
   let functions = '';
@@ -32,13 +36,24 @@ export function GenerateReceiveFunctions({ operations }) {
     // Generate receive function
     functions += `def ${t.functionName}(self, callback):
     """
+    ${t.summary}
+
     Args:
 
-    self:  CommentsServiceClient
-    callback: Callback function to handle received messages
+      self: ${className}
+
+      callback: Callback function to handle received messages
+    
+    Params:
+    
+      client: MQTT client instance that triggers the callback.
+
+      userdata: User data associated with the client. It's set when the client is created.
+
+     message: MQTT message instance representing the received message. It contains information such as topic, payload, etc.
+
     """
     topic = "${t.topic}"
-    summary = "${t.summary}"
     self.client.subscribe(topic)
     self.client.message_callback_add(topic, callback)\n`;
   });

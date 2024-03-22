@@ -9,7 +9,14 @@ min_value = 10**(id_length-1)
 max_value = 10**id_length - 1
 
 def read_views(client, user_data, message): 
-    '''Subcribes to a topic and adds a message callback to handle received messages.'''
+    '''Subcribes to a topic and adds a message callback to handle received messages.
+
+      client: MQTT client instance that triggers the callback.
+
+      userdata: User data associated with the client.
+
+      message: MQTT message instance representing the received message which contains information such as topic, payload, etc.'''
+         
     print("Received message on topic: " + message.topic)
     print("Message: " + str(message.payload.decode()))
 

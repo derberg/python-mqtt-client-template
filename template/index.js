@@ -3,6 +3,8 @@ import { GenerateSendFunctions, GenerateReceiveFunctions } from '../components/O
 
 export default function({ asyncapi, params }) {
 
+  const className = `${ asyncapi.info().title().replace(" ", "") }Client`;
+
   return (
     <File name="client.py">
      
@@ -15,7 +17,7 @@ export default function({ asyncapi, params }) {
       </Text>
 
       <Text newLines={2}>
-        class { asyncapi.info().title().replace(" ", "") }Client:
+        class { className }:
       </Text>
 
       <Text indent={2} newLines={2}>
@@ -25,8 +27,8 @@ export default function({ asyncapi, params }) {
       </Text>
 
       <Text indent={2}>
-        <GenerateSendFunctions operations = {asyncapi.operations()} />
-        <GenerateReceiveFunctions operations =  {asyncapi.operations()} />
+        <GenerateSendFunctions operations = {asyncapi.operations()} className = {className}/>
+        <GenerateReceiveFunctions operations =  {asyncapi.operations()} className = {className} />
       </Text>
 
             <Text indent={2} newLines={2}>
