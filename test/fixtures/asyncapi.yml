@@ -37,14 +37,17 @@ channels:
 operations:
   sendCommentLiked:
     action: send
+    summary: Message sent to the broker when a comment is liked
     channel:
       $ref: '#/channels/sendCommentLiked'
   sendCommentUnliked:
     action: send
+    summary: Message sent to the broker when a comment is unliked
     channel:
       $ref: '#/channels/sendCommentUnliked'
   receiveCommentViews:
     action: receive
+    summary: Message received when a comment is viewed
     channel:
       $ref: '#/channels/receiveCommentViews'
 components:
@@ -56,7 +59,7 @@ components:
       commentId:
         $ref: '#/components/schemas/commentId'
       count:
-        type: integer
+        $ref: '#/components/schemas/count'
     commentReaction:
       type: object
       additionalProperties: false
