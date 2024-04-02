@@ -44,13 +44,13 @@ export function GenerateReceiveFunctions({ operations, className }) {
 
       callback: Callback function to handle received messages
     
-    Params:
+    Callback Args:
     
       client: MQTT client instance that triggers the callback.
 
       userdata: User data associated with the client. It's set when the client is created.
 
-     message: MQTT message instance representing the received message. It contains information such as topic, payload, etc.
+      message: MQTT message instance representing the received message. It contains information such as topic, payload, etc.
 
     """
     topic = "${t.topic}"
