@@ -45,9 +45,7 @@ export default function({ asyncapi, params }) {
       <Text>
       To generate the code run:
 
-      ``` bash
-      asyncapi generate fromTemplate https://raw.githubusercontent.com/derberg/python-mqtt-client-template/main/test/fixtures/asyncapi.yml https://github.com/derberg/python-mqtt-client-template --output myclient --force-write --param server=dev
-      ```
+      `asyncapi generate fromTemplate https://raw.githubusercontent.com/derberg/python-mqtt-client-template/main/test/fixtures/asyncapi.yml https://github.com/derberg/python-mqtt-client-template --output myclient --force-write --param server=dev`
       </Text>
 
       <Text newLines={2}>
@@ -56,9 +54,7 @@ export default function({ asyncapi, params }) {
 
       <Text>
         For Client generation, in the terminal, run:
-        ``` bash
-        npm asyncapi generate fromTemplate test/fixtures/asyncapi.yml ./ --output test/project --force-write --param server=dev
-        ```
+        `npm asyncapi generate fromTemplate test/fixtures/asyncapi.yml ./ --output test/project --force-write --param server=dev`
 
       </Text>
 
@@ -70,14 +66,15 @@ export default function({ asyncapi, params }) {
        To install the package, simply use the following:
       </Text>
       <Text>
-        ``` bash
+        `
         pip install -r requirements.txt
-        ```
+        `
       </Text>
 
       <Text newLines={2}>
         ## Usage
       </Text>
+
     </File>
   );
 }

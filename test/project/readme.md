@@ -12,13 +12,13 @@ The client code creates an MQTT connection with OperationsFunction to generate, 
 - paho-mqtt 1.6.1
 ## Generate Code
 
-To generate the code run: ``` bash asyncapi generate fromTemplate https://raw.githubusercontent.com/derberg/python-mqtt-client-template/main/test/fixtures/asyncapi.yml https://github.com/derberg/python-mqtt-client-template --output myclient --force-write --param server=dev ```
+To generate the code run: `asyncapi generate fromTemplate https://raw.githubusercontent.com/derberg/python-mqtt-client-template/main/test/fixtures/asyncapi.yml https://github.com/derberg/python-mqtt-client-template --output myclient --force-write --param server=dev`
 ## Client Generator
 
-For Client generation, in the terminal, run: ``` bash npm asyncapi generate fromTemplate test/fixtures/asyncapi.yml ./ --output test/project --force-write --param server=dev ```
+For Client generation, in the terminal, run: `npm asyncapi generate fromTemplate test/fixtures/asyncapi.yml ./ --output test/project --force-write --param server=dev`
 ## Install Paho-MQTT
 
 We have a `requirements.txt` file under the template directory containing the `paho-mqtt` package. To install the package, simply use the following:
-``` bash pip install -r requirements.txt ```
+` pip install -r requirements.txt `
 ## Usage
 
