@@ -4,6 +4,7 @@ import { GenerateSendFunctions, GenerateReceiveFunctions } from '../components/O
 export default function({ asyncapi, params }) {
 
   const className = `${ asyncapi.info().title().replace(" ", "") }Client`;
+  const classDescription = asyncapi.info().description();
 
   return (
     <File name="client.py">
@@ -20,6 +21,10 @@ export default function({ asyncapi, params }) {
         class { className }:
       </Text>
 
+      <Text indent={2}>
+        {`'''${classDescription}'''`}
+      </Text>
+
       <Text indent={2} newLines={2}>
         {`def __init__(self):
             self.client = mqtt.Client()
@@ -27,8 +32,8 @@ export default function({ asyncapi, params }) {
       </Text>
 
       <Text indent={2}>
-        <GenerateSendFunctions operations = {asyncapi.operations()} className = {className}/>
-        <GenerateReceiveFunctions operations =  {asyncapi.operations()} className = {className} />
+        <GenerateSendFunctions operations = {asyncapi.operations()} className = {className} classDescription={classDescription}/>
+        <GenerateReceiveFunctions operations =  {asyncapi.operations()} className = {className} classDescription={classDescription} />
       </Text>
 
             <Text indent={2} newLines={2}>
