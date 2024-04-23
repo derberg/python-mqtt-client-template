@@ -1,6 +1,6 @@
 //Generates and returns a string containing send functions based on provided operations in the asyncapi file.
 
-export function GenerateSendFunctions({ operations, className, classDescription }) {
+export function GenerateSendFunctions({ operations, className }) {
   const sendOperations = Array.from(operations).filter(op => op.isSend());
   const sendDetails = getFunctionDetails(sendOperations);
   let functions = '';
@@ -9,7 +9,6 @@ export function GenerateSendFunctions({ operations, className, classDescription 
     // Send a message to the MQTT broker on whether a comment is liked or unliked by someone.
     functions += `def ${t.functionName}(self, id):
     """
-    ${classDescription}
 
     ${t.summary}
 
@@ -29,7 +28,7 @@ export function GenerateSendFunctions({ operations, className, classDescription 
 
 // Generates and returns a string containing receive functions based on provided operations in the asyncapi file.
 
-export function GenerateReceiveFunctions({ operations, className, classDescription }) {
+export function GenerateReceiveFunctions({ operations, className}) {
   const receiveOperations = Array.from(operations).filter(op => op.isReceive());
   const receiveDetails = getFunctionDetails(receiveOperations);
   let functions = '';
@@ -38,7 +37,6 @@ export function GenerateReceiveFunctions({ operations, className, classDescripti
     // Generate receive function
     functions += `def ${t.functionName}(self, callback):
     """
-    ${classDescription}
 
     ${t.summary}
 

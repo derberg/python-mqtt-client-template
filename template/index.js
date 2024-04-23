@@ -32,8 +32,8 @@ export default function({ asyncapi, params }) {
       </Text>
 
       <Text indent={2}>
-        <GenerateSendFunctions operations = {asyncapi.operations()} className = {className} classDescription={classDescription}/>
-        <GenerateReceiveFunctions operations =  {asyncapi.operations()} className = {className} classDescription={classDescription} />
+        <GenerateSendFunctions operations = {asyncapi.operations()} className = {className} />
+        <GenerateReceiveFunctions operations =  {asyncapi.operations()} className = {className} />
       </Text>
 
             <Text indent={2} newLines={2}>
