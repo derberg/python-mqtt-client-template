@@ -1,6 +1,6 @@
 //Generates and returns a string containing send functions based on provided operations in the asyncapi file.
 
-export function GenerateSendFunctions({ operations, className }) {
+export function GenerateSendFunctions({ operations, className}) {
   const sendOperations = Array.from(operations).filter(op => op.isSend());
   const sendDetails = getFunctionDetails(sendOperations);
   let functions = '';
@@ -9,7 +9,7 @@ export function GenerateSendFunctions({ operations, className }) {
     // Send a message to the MQTT broker on whether a comment is liked or unliked by someone.
     functions += `def ${t.functionName}(self, id):
     """
-
+    
     ${t.summary}
 
     Args:
