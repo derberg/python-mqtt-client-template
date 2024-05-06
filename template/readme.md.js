@@ -22,9 +22,11 @@ export default function ({ asyncapi }) {
       <Text newLines={2}>
         ## Requirements
       </Text>
+
       <Text>
         - Python 3.x
       </Text>
+
       <Text>
         - paho-mqtt 1.6.1
       </Text>
@@ -32,10 +34,12 @@ export default function ({ asyncapi }) {
       <Text newLines={2}>
         ## Install Dependencies
       </Text>
+
       <Text>
         We have a `requirements.txt` file under the template directory containing the `paho-mqtt` package.
         To install the package, simply use the following:
       </Text>
+
       <Text>
         ```python
       </Text>
@@ -102,16 +106,19 @@ export default function ({ asyncapi }) {
 
       <Text>
         def loop(self):
+      </Text>
 
+      <Text>
         '''This is a blocking form of the network loop and will not return until the client calls disconnect(). It automatically handles reconnecting.'''
-        
+      </Text>
+
+      <Text> 
         self.client.loop_forever()
       </Text>
 
       <Text>
-      ```
+       ```
       </Text>
-
 
     </File>
   );

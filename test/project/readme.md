@@ -79,5 +79,7 @@ def receiveCommentViews(self, callback):
     self.client.subscribe(topic)
     self.client.message_callback_add(topic, callback)
 
-def loop(self): '''This is a blocking form of the network loop and will not return until the client calls disconnect(). It automatically handles reconnecting.''' self.client.loop_forever()
+def loop(self):
+'''This is a blocking form of the network loop and will not return until the client calls disconnect(). It automatically handles reconnecting.'''
+self.client.loop_forever()
 ```
