@@ -1,16 +1,19 @@
 import { File, Text } from '@asyncapi/generator-react-sdk';
-import { getServiceClientName, getServiceClientDescription, getClientService, getSendFunctions, getReceiveFunctions } from './utils';
+import { getServiceClientName, getServiceClientDescription, getClientClassName, getSendOperations, getReceiveOperations, getFunctionDetails } from '../components/helpers/utils';
 
 export default function ({ asyncapi }) {
 
   const serviceClientName = getServiceClientName(asyncapi);
   const serviceClientDescription = getServiceClientDescription(asyncapi);
-  const clientService = getClientService(asyncapi);
-  const sendFunctions = getSendFunctions(asyncapi);
-  const receiveFunctions = getReceiveFunctions(asyncapi);
+  const clientClassName = getClientClassName(asyncapi);
+  const operations = asyncapi.operations();
+  const sendOperations = getSendOperations(operations);
+  const sendFunctions = getFunctionDetails(sendOperations);
+  const receiveOperations = getReceiveOperations(operations);
+  const receiveFunctions = getFunctionDetails(receiveOperations);
 
   return (
-    <File name="readme.md">
+    <File name="README.md">
       <Text>
         ## {serviceClientName}
       </Text>
@@ -65,7 +68,7 @@ export default function ({ asyncapi }) {
       </Text>
 
       <Text>
-        from client import {clientService}
+        from client import {clientClassName}
       </Text>
 
       <Text>
@@ -81,7 +84,7 @@ export default function ({ asyncapi }) {
       </Text>
 
       <Text>
-        client = {clientService}()
+        client = {clientClassName}()
       </Text>
 
       <Text>
@@ -97,29 +100,56 @@ export default function ({ asyncapi }) {
       </Text>
 
       <Text>
-        {sendFunctions}
+        {sendFunctionsExample(sendFunctions)}
       </Text>
 
       <Text>
-        {receiveFunctions}
+        ```
       </Text>
 
       <Text>
-        def loop(self):
+        ```python
       </Text>
 
       <Text>
-        '''This is a blocking form of the network loop and will not return until the client calls disconnect(). It automatically handles reconnecting.'''
-      </Text>
-
-      <Text> 
-        self.client.loop_forever()
+        {receiveFunctionExample(receiveFunctions)}
       </Text>
 
       <Text>
-       ```
+        ```
       </Text>
+
+    
 
     </File>
   );
 }
+
+function sendFunctionsExample(functions) {
+  let content = '';
+
+  functions.forEach(t => {
+    content += `
+# ${t.summary}
+client.${t.functionName}
+`
+  })
+
+  return content
+
+}
+
+function receiveFunctionExample(functions) {
+  let content = '';
+
+  functions.forEach(t => {
+    content += `
+# ${t.summary}
+client.${t.functionName}
+`
+  })
+
+  return content
+
+}
+

@@ -1,7 +1,10 @@
+import {getFunctionDetails, getSendOperations, getReceiveOperations} from '../components/helpers/utils';
+
+
 //Generates and returns a string containing send functions based on provided operations in the asyncapi file.
 
 export function GenerateSendFunctions({ operations, className}) {
-  const sendOperations = Array.from(operations).filter(op => op.isSend());
+  const sendOperations = getSendOperations(operations);
   const sendDetails = getFunctionDetails(sendOperations);
   let functions = '';
 
@@ -29,7 +32,7 @@ export function GenerateSendFunctions({ operations, className}) {
 // Generates and returns a string containing receive functions based on provided operations in the asyncapi file.
 
 export function GenerateReceiveFunctions({ operations, className}) {
-  const receiveOperations = Array.from(operations).filter(op => op.isReceive());
+  const receiveOperations = getReceiveOperations(operations);
   const receiveDetails = getFunctionDetails(receiveOperations);
   let functions = '';
 
@@ -61,32 +64,6 @@ export function GenerateReceiveFunctions({ operations, className}) {
   });
   
   return functions;
-}
-
-// Capitalizes the first letter of each word in a given string. Follows the camelCase rule.
-
-function capitalizeWords(str) {
-  return str.split('/').map(word => word.charAt(0).toLowerCase() + word.slice(1)).join('');
-}
-
-// Extracts and returns functionName and topic from a list of operations.
-
-function getFunctionDetails(operations) {
-  const details = [];
-
-  operations.forEach(operation => {
-    const topic = {};
-
-      const capitalizedName = capitalizeWords(operation.operationId() || operation.id());
-      topic.functionName = capitalizedName;
-      const channel = operation.channels();
-      topic.topic = channel[0].address();
-      topic.summary = operation.summary();
-
-      details.push(topic);
-  });
-
-  return details;
 }
 
 
