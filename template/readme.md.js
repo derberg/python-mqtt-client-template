@@ -92,7 +92,7 @@ export default function ({ asyncapi }) {
       </Text>
 
       <Text newLines={2}>
-        3. Client functions :
+        3. Example on how to send messages :
       </Text>
 
       <Text>
@@ -105,6 +105,10 @@ export default function ({ asyncapi }) {
 
       <Text>
         ```
+      </Text>
+
+      <Text newLines={2}>
+        4. Example functions on how to receive messages :
       </Text>
 
       <Text>
@@ -131,7 +135,9 @@ function sendFunctionsExample(functions) {
   functions.forEach(t => {
     content += `
 # ${t.summary}
-client.${t.functionName}
+client.${t.functionName}(randomId)
+print("New like for comment " + str(randomId) + " sent to ${t.topic}")
+
 `
   })
 
@@ -145,7 +151,9 @@ function receiveFunctionExample(functions) {
   functions.forEach(t => {
     content += `
 # ${t.summary}
-client.${t.functionName}
+client.${t.functionName}(read_views)
+print("Received message on topic: " + message.topic)
+print("Message: " + str(message.payload.decode()))
 `
   })
 

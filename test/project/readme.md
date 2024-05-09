@@ -23,20 +23,28 @@ from client import CommentsServiceClient
 ```python
 client = CommentsServiceClient()
 ```
-3. Client functions :
+3. Example on how to send messages :
 
 ```python
 
 # Message sent to the broker when a comment is liked
-client.sendCommentLiked
+client.sendCommentLiked(randomId)
+print("New like for comment " + str(randomId) + " sent to comment/liked")
+
 
 # Message sent to the broker when a comment is unliked
-client.sendCommentUnliked
+client.sendCommentUnliked(randomId)
+print("New like for comment " + str(randomId) + " sent to comment/unliked")
+
 
 ```
+4. Example functions on how to receive messages :
+
 ```python
 
 # Message received when a comment is viewed
-client.receiveCommentViews
+client.receiveCommentViews(read_views)
+print("Received message on topic: " + message.topic)
+print("Message: " + str(message.payload.decode()))
 
 ```
