@@ -1,6 +1,5 @@
 import {getFunctionDetails, getSendOperations, getReceiveOperations} from '../components/helpers/utils';
 
-
 //Generates and returns a string containing send functions based on provided operations in the asyncapi file.
 
 export function GenerateSendFunctions({ operations, className}) {

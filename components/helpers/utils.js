@@ -1,5 +1,3 @@
-import { GenerateSendFunctions, GenerateReceiveFunctions } from '../OperationFunction';
-
 // Function to generate service client name
 export const getServiceClientName = (asyncapi) => {
     return `${asyncapi.info().title()} Client`;

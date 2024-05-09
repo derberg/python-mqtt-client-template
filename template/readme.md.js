@@ -123,8 +123,6 @@ export default function ({ asyncapi }) {
         ```
       </Text>
 
-    
-
     </File>
   );
 }
@@ -137,12 +135,9 @@ function sendFunctionsExample(functions) {
 # ${t.summary}
 client.${t.functionName}(randomId)
 print("New like for comment " + str(randomId) + " sent to ${t.topic}")
-
 `
   })
-
   return content
-
 }
 
 function receiveFunctionExample(functions) {
@@ -156,8 +151,6 @@ print("Received message on topic: " + message.topic)
 print("Message: " + str(message.payload.decode()))
 `
   })
-
   return content
-
 }
 
