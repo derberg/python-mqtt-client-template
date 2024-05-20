@@ -1,10 +1,12 @@
 import { File, Text } from '@asyncapi/generator-react-sdk';
 import { GenerateSendFunctions, GenerateReceiveFunctions } from '../components/OperationFunction';
+import {getClientClassName, getServiceClientDescription} from '../components/helpers/utils';
+
 
 export default function({ asyncapi, params }) {
 
-  const className = `${ asyncapi.info().title().replace(" ", "") }Client`;
-  const classDescription = asyncapi.info().description();
+  const className = getClientClassName(asyncapi);
+  const classDescription = getServiceClientDescription(asyncapi);
   const operations = asyncapi.operations();
 
   return (

@@ -29,13 +29,11 @@ client = CommentsServiceClient()
 
 # Message sent to the broker when a comment is liked
 client.sendCommentLiked(randomId)
-print("New like for comment " + str(randomId) + " sent to comment/liked")
-
+print("Send new message " + str(randomId) + " sent to comment/liked")
 
 # Message sent to the broker when a comment is unliked
 client.sendCommentUnliked(randomId)
-print("New like for comment " + str(randomId) + " sent to comment/unliked")
-
+print("Send new message " + str(randomId) + " sent to comment/unliked")
 
 ```
 4. Example functions on how to receive messages :
@@ -44,7 +42,7 @@ print("New like for comment " + str(randomId) + " sent to comment/unliked")
 
 # Message received when a comment is viewed
 client.receiveCommentViews(read_views)
-print("Received message on topic: " + message.topic)
+print("Receive message: " + message.topic)
 print("Message: " + str(message.payload.decode()))
 
 ```

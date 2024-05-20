@@ -1,15 +1,15 @@
 // Function to generate service client name
-export const getServiceClientName = (asyncapi) => {
+export function getServiceClientName(asyncapi) {
     return `${asyncapi.info().title()} Client`;
   };
   
 // Function to generate service client description
-export const getServiceClientDescription = (asyncapi) => {
+export function getServiceClientDescription(asyncapi) {
     return `${asyncapi.info().description()}`;
   };
   
 // Function to import client service
-export const getClientClassName = (asyncapi) => {
+export function getClientClassName(asyncapi) {
     return `${ asyncapi.info().title().replace(" ", "") }Client`
   };
 

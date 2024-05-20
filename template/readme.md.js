@@ -134,7 +134,7 @@ function sendFunctionsExample(functions) {
     content += `
 # ${t.summary}
 client.${t.functionName}(randomId)
-print("New like for comment " + str(randomId) + " sent to ${t.topic}")
+print("Send new message " + str(randomId) + " sent to ${t.topic}")
 `
   })
   return content
@@ -147,7 +147,7 @@ function receiveFunctionExample(functions) {
     content += `
 # ${t.summary}
 client.${t.functionName}(read_views)
-print("Received message on topic: " + message.topic)
+print("Receive message: " + message.topic)
 print("Message: " + str(message.payload.decode()))
 `
   })
