@@ -60,7 +60,7 @@ export default function ({ asyncapi }) {
       </Text>
 
       <Text newLines={2}>
-        1. Import the {serviceClientName}:
+        - Import the {serviceClientName}:
       </Text>
 
       <Text>
@@ -76,7 +76,7 @@ export default function ({ asyncapi }) {
       </Text>
 
       <Text newLines={2}>
-        2. Create a client instance:
+        - Create a client instance:
       </Text>
 
       <Text>
@@ -92,7 +92,7 @@ export default function ({ asyncapi }) {
       </Text>
 
       <Text newLines={2}>
-        3. Example on how to send messages :
+        - Example on how to send messages :
       </Text>
 
       <Text>
@@ -108,7 +108,7 @@ export default function ({ asyncapi }) {
       </Text>
 
       <Text newLines={2}>
-        4. Example functions on how to receive messages :
+        - Example functions on how to receive messages :
       </Text>
 
       <Text>
@@ -146,9 +146,19 @@ function receiveFunctionExample(functions) {
   functions.forEach(t => {
     content += `
 # ${t.summary}
-client.${t.functionName}(read_views)
-print("Receive message: " + message.topic)
-print("Message: " + str(message.payload.decode()))
+def read_views_callback(client, user_data, message): 
+    '''Subcribes to a topic and adds a message callback to handle received messages.
+
+      client: MQTT client instance that triggers the callback.
+
+      userdata: User data associated with the client.
+
+      message: MQTT message instance representing the received message which contains information such as topic, payload, etc.'''
+         
+    print("Received message on topic: " + message.topic)
+    print("Message: " + str(message.payload.decode()))
+
+client.${t.functionName}(read_views_callback)
 `
   })
   return content

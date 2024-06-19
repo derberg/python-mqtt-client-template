@@ -13,17 +13,17 @@ pip install -r requirements.txt
 ```
 ## Usage of Comments Service Client
 
-1. Import the Comments Service Client:
+- Import the Comments Service Client:
 
 ```python
 from client import CommentsServiceClient
 ```
-2. Create a client instance:
+- Create a client instance:
 
 ```python
 client = CommentsServiceClient()
 ```
-3. Example on how to send messages :
+- Example on how to send messages :
 
 ```python
 
@@ -36,13 +36,23 @@ client.sendCommentUnliked(randomId)
 print("Send new message " + str(randomId) + " sent to comment/unliked")
 
 ```
-4. Example functions on how to receive messages :
+- Example functions on how to receive messages :
 
 ```python
 
 # Message received when a comment is viewed
-client.receiveCommentViews(read_views)
-print("Receive message: " + message.topic)
-print("Message: " + str(message.payload.decode()))
+def read_views_callback(client, user_data, message): 
+    '''Subcribes to a topic and adds a message callback to handle received messages.
+
+      client: MQTT client instance that triggers the callback.
+
+      userdata: User data associated with the client.
+
+      message: MQTT message instance representing the received message which contains information such as topic, payload, etc.'''
+         
+    print("Received message on topic: " + message.topic)
+    print("Message: " + str(message.payload.decode()))
+
+client.receiveCommentViews(read_views_callback)
 
 ```
