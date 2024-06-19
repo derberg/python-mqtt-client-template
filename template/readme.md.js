@@ -145,7 +145,7 @@ function receiveFunctionExample(functions) {
 
   functions.forEach(t => {
     content += `
-# ${t.summary}
+# ${t.summary} 
 def read_views_callback(client, user_data, message): 
     '''Subcribes to a topic and adds a message callback to handle received messages.
 

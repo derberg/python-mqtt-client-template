@@ -6,3 +6,4 @@ node_modules
 test/project/client.py
 test/project/requirements.txt
 test/project/README.md
+test/project/readme.md

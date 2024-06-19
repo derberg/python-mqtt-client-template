@@ -40,7 +40,7 @@ print("Send new message " + str(randomId) + " sent to comment/unliked")
 
 ```python
 
-# Message received when a comment is viewed
+# Message received when a comment is viewed 
 def read_views_callback(client, user_data, message): 
     '''Subcribes to a topic and adds a message callback to handle received messages.
 
