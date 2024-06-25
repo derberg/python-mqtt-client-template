@@ -13,17 +13,17 @@ pip install -r requirements.txt
 ```
 ## Usage of Comments Service Client
 
-- Import the Comments Service Client:
+1. Import the Comments Service Client:
 
 ```python
 from client import CommentsServiceClient
 ```
-- Create a client instance:
+1. Create a client instance:
 
 ```python
 client = CommentsServiceClient()
 ```
-- Example on how to send messages :
+1. Example of how to send messages :
 
 ```python
 
@@ -36,7 +36,7 @@ client.sendCommentUnliked(randomId)
 print("Send new message " + str(randomId) + " sent to comment/unliked")
 
 ```
-- Example functions on how to receive messages :
+1. Example functions of how to receive messages :
 
 ```python
 

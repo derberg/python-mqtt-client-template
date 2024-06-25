@@ -60,7 +60,7 @@ export default function ({ asyncapi }) {
       </Text>
 
       <Text newLines={2}>
-        - Import the {serviceClientName}:
+        1. Import the {serviceClientName}:
       </Text>
 
       <Text>
@@ -76,7 +76,7 @@ export default function ({ asyncapi }) {
       </Text>
 
       <Text newLines={2}>
-        - Create a client instance:
+        1. Create a client instance:
       </Text>
 
       <Text>
@@ -92,7 +92,7 @@ export default function ({ asyncapi }) {
       </Text>
 
       <Text newLines={2}>
-        - Example on how to send messages :
+        1. Example of how to send messages :
       </Text>
 
       <Text>
@@ -108,7 +108,7 @@ export default function ({ asyncapi }) {
       </Text>
 
       <Text newLines={2}>
-        - Example functions on how to receive messages :
+        1. Example functions of how to receive messages :
       </Text>
 
       <Text>
