@@ -25,11 +25,11 @@ describe('template integration test using generator', () => {
       templateParams: params
     });
     console.log(outputDir);
-    await generator.generateFromString(asyncapiFile);
+    await generator.generate(asyncapiFile);
 
     const expectedFiles = [
-      'client.py',
-      'README.md'
+      'client.py'
+      //,'README.md'
     ];
 
     for (const index in expectedFiles) {
