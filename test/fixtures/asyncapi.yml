@@ -54,9 +54,9 @@ components:
   schemas:
     commentCount:
       type: object
-    additionalProperties: false
-    properties:
-      commentId:
+      additionalProperties: false
+      properties:
+       commentId:
         $ref: '#/components/schemas/commentId'
       count:
         $ref: '#/components/schemas/count'
