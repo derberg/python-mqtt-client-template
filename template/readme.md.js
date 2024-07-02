@@ -63,15 +63,15 @@ export default function ({ asyncapi }) {
         1. Import the {serviceClientName}:
       </Text>
 
-      <Text>
+      <Text indent={4}>
         ```python
       </Text>
 
-      <Text>
+      <Text indent={4}>
         from client import {clientClassName}
       </Text>
 
-      <Text>
+      <Text indent={4}>
         ```
       </Text>
 
@@ -79,15 +79,15 @@ export default function ({ asyncapi }) {
         1. Create a client instance:
       </Text>
 
-      <Text>
+      <Text indent={4}>
         ```python
       </Text>
 
-      <Text>
+      <Text indent={4}>
         client = {clientClassName}()
       </Text>
 
-      <Text>
+      <Text indent={4}>
         ```
       </Text>
 
@@ -95,15 +95,15 @@ export default function ({ asyncapi }) {
         1. Example of how to send messages :
       </Text>
 
-      <Text>
+      <Text indent={4}>
         ```python
       </Text>
 
-      <Text>
+      <Text indent={4}> 
         {sendFunctionsExample(sendFunctions)}
       </Text>
 
-      <Text>
+      <Text indent={4}>
         ```
       </Text>
 
@@ -111,15 +111,15 @@ export default function ({ asyncapi }) {
         1. Example functions of how to receive messages :
       </Text>
 
-      <Text>
+      <Text indent={4}>
         ```python
       </Text>
 
-      <Text>
+      <Text indent={4}>
         {receiveFunctionExample(receiveFunctions)}
       </Text>
 
-      <Text>
+      <Text indent={4}>
         ```
       </Text>
 
