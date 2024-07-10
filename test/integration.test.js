@@ -1,11 +1,9 @@
 const path = require('path');
 const Generator = require('@asyncapi/generator');
 const { readFile } = require('fs').promises;
-const fs = require('fs');
-const console = require('console');
 
 const MAIN_TEST_RESULT_PATH = path.join('test', 'IntegrationSnaps', 'TestResults');
-const ASYNCAPI_FILE_PATH = path.resolve(__dirname, '../test/fixtures/asyncapi.yml');
+const ASYNCAPI_FILE_PATH = path.resolve(__dirname, 'fixtures/asyncapi.yml');
 
 describe('template integration test using generator', () => {
   const generateFolderName = () => {
@@ -16,7 +14,6 @@ describe('template integration test using generator', () => {
 
   it('should generate application files', async () => {
     const outputDir = generateFolderName();
-    const asyncapiFile = await readFile(ASYNCAPI_FILE_PATH, 'utf8');
     const params = {
       server: 'dev'
     };
@@ -24,8 +21,7 @@ describe('template integration test using generator', () => {
       forceWrite: true,
       templateParams: params
     });
-    console.log(outputDir);
-    await generator.generate(asyncapiFile);
+    await generator.generateFromFile(ASYNCAPI_FILE_PATH);
 
     const expectedFiles = [
       'client.py'
