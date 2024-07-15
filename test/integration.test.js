@@ -24,8 +24,8 @@ describe('template integration test using generator', () => {
     await generator.generateFromFile(ASYNCAPI_FILE_PATH);
 
     const expectedFiles = [
-      'client.py'
-      //,'README.md'
+      'client.py',
+      'README.md'
     ];
 
     for (const index in expectedFiles) {
