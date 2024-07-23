@@ -25,7 +25,7 @@
   },
     "scripts": {
         "test:cleanSnaps": "rimraf test/IntegrationSnaps && jest --modulePathIgnorePatterns='./template'",
-        "test:updateSnapshot": "rimraf test/IntegrationSnaps && jest --updateSnapshot --modulePathIgnorePatterns='./template'",
+        "test:updateSnapshot": "jest --updateSnapshot --modulePathIgnorePatterns='./template'",
         "test:clean": "npx rimraf@5.0.0 test/project/client.py test/project/requirements.txt",
         "test:generate": "npx -p @asyncapi/cli@1.6.3 asyncapi generate fromTemplate test/fixtures/asyncapi.yml ./ --output test/project --force-write --param server=dev",
         "test:start": "python test/project/test.py",
