@@ -3,7 +3,7 @@
 exports[`template integration test using generator should generate application files 1`] = `
 "import paho.mqtt.client as mqtt
 
-mqttBroker = "test.mosquitto.org"
+mqttBroker = \\"test.mosquitto.org\\"
 
 class CommentsServiceClient:
 
@@ -13,7 +13,7 @@ class CommentsServiceClient:
               self.client.connect(mqttBroker)
 
   def sendCommentLiked(self, id):
-      """
+      \\"\\"\\"
     
       Message sent to the broker when a comment is liked
 
@@ -23,11 +23,11 @@ class CommentsServiceClient:
 
         id (str) : Comment ID
     
-      """
-      topic = "comment/liked"
+      \\"\\"\\"
+      topic = \\"comment/liked\\"
       self.client.publish(topic, id)
   def sendCommentUnliked(self, id):
-      """
+      \\"\\"\\"
     
       Message sent to the broker when a comment is unliked
 
@@ -37,11 +37,11 @@ class CommentsServiceClient:
 
         id (str) : Comment ID
     
-      """
-      topic = "comment/unliked"
+      \\"\\"\\"
+      topic = \\"comment/unliked\\"
       self.client.publish(topic, id)
   def receiveCommentViews(self, callback):
-      """
+      \\"\\"\\"
 
       Message received when a comment is viewed
 
@@ -59,8 +59,8 @@ class CommentsServiceClient:
 
         message: MQTT message instance representing the received message. It contains information such as topic, payload, etc.
 
-      """
-      topic = "comment/views"
+      \\"\\"\\"
+      topic = \\"comment/views\\"
       self.client.subscribe(topic)
       self.client.message_callback_add(topic, callback)
 
@@ -102,11 +102,11 @@ pip install -r requirements.txt
     \`\`\`python
     # Message sent to the broker when a comment is liked
     client.sendCommentLiked(randomId)
-    print("Send new message " + str(randomId) + " sent to comment/liked")
+    print(\\"Send new message \\" + str(randomId) + \\" sent to comment/liked\\")
 
     # Message sent to the broker when a comment is unliked
     client.sendCommentUnliked(randomId)
-    print("Send new message " + str(randomId) + " sent to comment/unliked")
+    print(\\"Send new message \\" + str(randomId) + \\" sent to comment/unliked\\")
 
     \`\`\`
 1. Example functions of how to receive messages :
@@ -122,8 +122,8 @@ pip install -r requirements.txt
 
           message: MQTT message instance representing the received message which contains information such as topic, payload, etc.'''
          
-        print("Received message on topic: " + message.topic)
-        print("Message: " + str(message.payload.decode()))
+        print(\\"Received message on topic: \\" + message.topic)
+        print(\\"Message: \\" + str(message.payload.decode()))
 
     client.receiveCommentViews(read_views_callback)
 
