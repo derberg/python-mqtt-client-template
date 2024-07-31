@@ -21,14 +21,13 @@
     "devDependencies": {
       "@asyncapi/generator": "^2.0.3",
       "jest": "^27.5.1"
+     },
+    "jest": {
+      "moduleNameMapper": {
+        "^nimma/legacy$": "<rootDir>/node_modules/nimma/dist/legacy/cjs/index.js",
+        "^nimma/(.*)": "<rootDir>/node_modules/nimma/dist/cjs/$1"
+     }
   },
-  "jest": {
-    "moduleNameMapper": {
-      "^nimma/legacy$": "<rootDir>/node_modules/nimma/dist/legacy/cjs/index.js",
-      "^nimma/(.*)": "<rootDir>/node_modules/nimma/dist/cjs/$1"
-    }
-  },
-  
     "scripts": {
         "test:snapshot": "jest --modulePathIgnorePatterns='./template'",
         "test:clean": "npx rimraf@5.0.0 test/project/client.py test/project/requirements.txt test/IntegrationSnaps",
