@@ -75,7 +75,7 @@ export function GenerateReceiveFunctions({ operations, className}) {
 The Comments Service defined in the AsyncAPI file processes events using the MQTT protocol
 to handle different operations such as Send/Publish for comments like and unlike and Receive/Subscribe views.
 
-OperactionFunction code includes two major functions one to GenerateSendFunctions and the other to GenerateReceiveFunctions.
+OperationFunction code includes two major functions one to GenerateSendFunctions and the other to GenerateReceiveFunctions.
 These functions generate send and receive according to the definition of the AsyncAPI file. These functions will then create the client 
 implementation `client.py`
 

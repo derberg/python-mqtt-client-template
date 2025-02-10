@@ -20,20 +20,38 @@
     },
     "devDependencies": {
       "@asyncapi/generator": "^2.0.3",
+      "@babel/preset-env": "^7.26.0",
+      "@babel/preset-react": "^7.25.9",
+      "babel-jest": "^29.7.0",
       "jest": "^27.5.1"
      },
     "jest": {
       "moduleNameMapper": {
         "^nimma/legacy$": "<rootDir>/node_modules/nimma/dist/legacy/cjs/index.js",
         "^nimma/(.*)": "<rootDir>/node_modules/nimma/dist/cjs/$1"
+     },
+     "transform": {
+       "^.+\\.jsx?$": "babel-jest"
      }
   },
+    "babel": {
+        "presets": [
+        "@babel/preset-env",
+        [
+            "@babel/preset-react",
+            {
+            "runtime": "automatic"
+            }
+        ]
+    ]
+  },
     "scripts": {
-        "test:snapshot": "jest --modulePathIgnorePatterns='./template'",
+        "test:snapshot": "jest --modulePathIgnorePatterns='./template' --testPathIgnorePatterns=unit -u",
+        "test:unit": "jest --modulePathIgnorePatterns='./template' --testPathIgnorePatterns=integration -u",
         "test:clean": "npx rimraf@5.0.0 test/project/client.py test/project/requirements.txt test/IntegrationSnaps",
         "test:generate": "npx -p @asyncapi/cli@1.6.3 asyncapi generate fromTemplate test/fixtures/asyncapi.yml ./ --output test/project --force-write --param server=dev",
         "test:start": "python test/project/test.py",
         "test:example": "npm run test:clean && npm run test:generate && npm run test:start",
-        "test": "npm run test:snapshot -- -u"
+        "test": "npm run test:snapshot && npm run test:unit"
     }
 }

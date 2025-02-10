@@ -66,7 +66,12 @@ npm run test:example
 ```
 We added jest snapshots to cover the integration tests, and you can run:
 ```bash
-npm test
+npm test:snapshot
+```
+
+We setup unit tests and use jest as the runner, and you use the command:
+```bash
+npm test:unit
 ```
 
 For local development, you need different variations of this command. First of all, you need to know about three important CLI flags:

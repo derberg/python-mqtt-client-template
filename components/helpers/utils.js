@@ -1,3 +1,5 @@
+import { convertChannelToFilename } from './channel-topics';
+
 // Function to generate service client name
 export function getServiceClientName(asyncapi) {
     return `${asyncapi.info().title()} Client`;
@@ -5,7 +7,9 @@ export function getServiceClientName(asyncapi) {
   
 // Function to generate service client description
 export function getServiceClientDescription(asyncapi) {
-    return `${asyncapi.info().description()}`;
+    const hasDesc = asyncapi.info().hasDescription();
+    const description = hasDesc ? `${asyncapi.info().description()}` : '';
+    return description;
   };
   
 // Function to import client service
@@ -15,9 +19,9 @@ export function getClientClassName(asyncapi) {
 
 // Returns functionName
 export function getFunctionName(operation) {
-
-  const str = operation.operationId() || operation.id();
-  return str.split('/').map(word => word.charAt(0).toLowerCase() + word.slice(1)).join('');
+  const hasOpId = operation.hasOperationId();
+  const operationId = hasOpId ? operation.operationId() : convertChannelToFilename(operation.id()); // convertChannelToFilename is used when operationId is not available
+  return operationId;
 }
 
 // Extracts and returns topic from a list of operations.
